@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014800c8767d25440b52e8644056568f, type: 3}
+  m_Name: Audio Manager
+  m_EditorClassIdentifier: 
+  masterGroup: {fileID: 24300002, guid: e9c631ab3f654ec4c9feea91700de883, type: 2}
+  masterMixer: {fileID: 24100000, guid: e9c631ab3f654ec4c9feea91700de883, type: 2}
+  musicGroup: {fileID: -8359496314520461063, guid: e9c631ab3f654ec4c9feea91700de883, type: 2}
+  soundGroup: {fileID: -135008165335785675, guid: e9c631ab3f654ec4c9feea91700de883, type: 2}
+  lowestDeciblesBeforeMute: -20
