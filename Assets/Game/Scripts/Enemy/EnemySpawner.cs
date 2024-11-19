@@ -8,9 +8,14 @@ public class EnemySpawner : ObjectPool
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private float _secondsBetweenSpawn;
 
-    private float _elapsedTime = 0;
-    [SerializeField] private SoundsPlayer _arrivePlayer;
+    private float _arriveVolume = 1f;
+    private float _arrivePitch = 1f;
+    private float _soundDistance = 30f;
+    private SoundsPlayer _arrivePlayer;
     private string _soundName = "прибытие";
+
+    private float _elapsedTime = 0;
+   
     private void Start()
     {
         Initialize(_enemyTemplates);
@@ -26,15 +31,16 @@ public class EnemySpawner : ObjectPool
                 _elapsedTime = 0;
 
                 int spawnPointNumber = Random.Range(0, _spawnPoints.Length);
-                SetEnemy(enemy, _spawnPoints[spawnPointNumber].position);
+                SetEnemy(enemy, _spawnPoints[spawnPointNumber]);
             }
         }
     }
 
-    private void SetEnemy(GameObject enemy, Vector3 spawnPoint)
+    private void SetEnemy(GameObject enemy, Transform spawnPoint)
     {
-        _arrivePlayer.PlayVolumed(_soundName, 0.5f);
+        _arrivePlayer = spawnPoint.GetComponent<SoundsPlayer>();
+        _arrivePlayer.Play(_soundName, _arriveVolume, _arrivePitch, _soundDistance);
         enemy.SetActive(true);
-        enemy.transform.position = spawnPoint;
+        enemy.transform.position = spawnPoint.position;
     }
 }

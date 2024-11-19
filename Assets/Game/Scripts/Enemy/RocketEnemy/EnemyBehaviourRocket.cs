@@ -13,7 +13,7 @@ public class EnemyBehaviourRocket : MonoBehaviour
     private float _leftBorder = -15f;
     private float _rightBorder = 15f;
     [SerializeField] private EnemyMover _enemyMover;
-    private bool randomMove = true;
+    //private bool randomMove = true;
     private bool randomShoot;
     private bool randomTr;
     private float upDownTimer;

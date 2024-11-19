@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     //public AudioClip _audioClip;
     private void Start()
     {
-        Time.timeScale = 0f;
+       // Time.timeScale = 0f;
 
         /*        int masterVolume = PlayerPrefs.GetInt("MasterVolume", 50);
                 int soundVolume = PlayerPrefs.GetInt("SoundVolume", 50);

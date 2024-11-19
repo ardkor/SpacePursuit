@@ -7,9 +7,10 @@ using UnityEngine;
 public class EnemyBehaviourLaser : MonoBehaviour
 {
     private Transform _playerTransform;
-    [SerializeField] private float _enemySpeed = 1.0f;
-    [SerializeField] private float fireRate = 7.0f;
-    [SerializeField] private float stopRate = 4.0f;
+    private float _enemySpeed = 1.0f;
+    private float fireRate = 7.0f;
+    private float stopRate = 4.0f;
+    private float _fireVolume = 0.5f;
     private float fireRateSpeed = 0.3f;
     private float fireRateTimer = 0f;
 
@@ -19,12 +20,11 @@ public class EnemyBehaviourLaser : MonoBehaviour
     private float fireTimer;
     // Start is called before the first frame update
     private LaserEnemyBulletSpawner laserEnemyBulletSpawner;
-    private LaserPlayer _firePlayer;
+    [SerializeField] private SoundsPlayer _firePlayer;
     private string _soundName = "очередь";
     private bool _wasSound = false;
     void Start()
     {
-        _firePlayer = FindObjectOfType<LaserPlayer>();
         laserEnemyBulletSpawner = FindObjectOfType<LaserEnemyBulletSpawner>();
         _playerTransform = FindObjectOfType<Player>().transform;
     }
@@ -53,7 +53,7 @@ public class EnemyBehaviourLaser : MonoBehaviour
             }
             if (!_wasSound)
             {
-                _firePlayer.PlayVolumed(_soundName, 0.05f);
+                _firePlayer.Play(_soundName, _fireVolume);
                 _wasSound = true;
             }
                 /*if (fireCoroutine == null)

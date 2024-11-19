@@ -36,6 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3578693561113648618}
+  - {fileID: 3405929511539619576}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3525901333443055266
@@ -138,6 +139,7 @@ MonoBehaviour:
   _randCd: 3
   _fireRate: 1
   _firePoint: {fileID: 3578693561113648618}
+  _firePlayer: {fileID: 3344154374454810491}
 --- !u!50 &7732734886693539934
 Rigidbody2D:
   serializedVersion: 4
@@ -210,6 +212,54 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.58, y: 0.46}
   m_EdgeRadius: 0
+--- !u!1 &4153908040496290345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3405929511539619576}
+  - component: {fileID: 3344154374454810491}
+  m_Layer: 7
+  m_Name: FirePlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3405929511539619576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153908040496290345}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3525901333443055267}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3344154374454810491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153908040496290345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2413824b980bd504da725eeb88e9a3a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sounds:
+  - name: "\u0432\u044B\u0441\u0442\u0440\u0435\u043B"
+    audioClip: {fileID: 8300000, guid: f60f865b7a3f67940bcdc0abed5cc84a, type: 3}
+  _isDistantion: 1
 --- !u!1 &5969752047064888070
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3578693561113648618}
   m_Layer: 7
-  m_Name: FierPoint
+  m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

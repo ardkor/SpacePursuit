@@ -7,54 +7,15 @@ public class SoundsPlayer : MonoBehaviour
 {
     [SerializeField] protected Sound[] _sounds;
 
+    [SerializeField] protected bool _isDistantion = false;
+    protected float _maxDistance = 10f;
+
     protected AudioClip _audioClip;
     protected AudioSource _audioSource;
+
     protected float _prevVolume;
 
-    [SerializeField] protected float rateTime = 0.01f;
-
-    public void FadeSound()
-    {
-        
-/*        _audioSource.volume = 0.1f;
-        TryPause();*/
-        StartCoroutine(_FadeSound());
-    }
-
-    public void IncreaseSound()
-    {
-        //_audioSource.volume = _prevVolume;
-        TryContinue();
-        StartCoroutine(_IncreaseSound());
-    }
-
-    IEnumerator _FadeSound()
-    {
-        float t = rateTime;
-
-        while (t > 0)
-        {
-            yield return null;
-            t -= Time.deltaTime;
-            _audioSource.volume = t / rateTime;
-        }
-        TryPause();
-        yield break;
-        //yield audioSource.Pause ();
-    }
-
-    IEnumerator _IncreaseSound()
-    {
-        float t = 0;
-
-        while (_audioSource.volume < 1)
-        {
-            yield return null;
-            t += Time.deltaTime;
-            _audioSource.volume = t / rateTime;
-        }
-        yield break;
-    }
+    
 
     [System.Serializable]
     protected class Sound
@@ -89,21 +50,29 @@ public class SoundsPlayer : MonoBehaviour
     }
     public void Play(string name)
     {
-        float pitch = Random.Range(0.8f, 1f);
-        FindClip(name);
-        if (_audioClip != null)
-        {
-            _audioSource = AudioManager.Instance.Play(_audioClip, transform, 1f, pitch);
-        }
+        Play(name, 1f);
     }
-    public void PlayVolumed(string name, float volume)
+    public void Play(string name, float volume)
+    {
+        Play(name, volume, 1f);
+    }
+    public void Play(string name, float volume, float pitch)
+    {
+        Play(name, volume, pitch, _maxDistance);
+    }
+    public void Play(string name, float volume, float pitch, float maxDistance)
     {
         _prevVolume = volume;
-        float pitch = Random.Range(0.8f, 1f);
         FindClip(name);
         if (_audioClip != null)
         {
             _audioSource = AudioManager.Instance.Play(_audioClip, transform, volume, pitch);
+        }
+        if (_isDistantion)
+        {
+            _audioSource.rolloffMode = AudioRolloffMode.Linear;
+            _audioSource.spatialBlend = 1f;
+            _audioSource.maxDistance = maxDistance;
         }
     }
     public void PlayVolumedLoop(string name, float volume)
@@ -113,6 +82,12 @@ public class SoundsPlayer : MonoBehaviour
         if (_audioClip != null)
         {
             _audioSource = AudioManager.Instance.PlayLoop(_audioClip, transform, volume, 1f);
+        }
+        if (_isDistantion)
+        {
+            _audioSource.rolloffMode = AudioRolloffMode.Linear;
+            _audioSource.spatialBlend = 1f;
+            _audioSource.maxDistance = _maxDistance;
         }
     }
     public bool isPlaying()

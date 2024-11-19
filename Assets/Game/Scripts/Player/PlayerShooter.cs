@@ -7,6 +7,7 @@ public class PlayerShooter : MonoBehaviour
 {
     [SerializeField] private float _fireRate;
     [SerializeField] private float _fireEnergySpend;
+    [SerializeField] private float _fireVolume = 0.6f;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private BulletSpawner _bulletSpawner;
     [SerializeField] private SoundsPlayer _soundsPlayer;
@@ -25,7 +26,7 @@ public class PlayerShooter : MonoBehaviour
         {
             if (_playerEnergy.trySpendEnergy(_fireEnergySpend))
             {
-                _soundsPlayer.Play(_soundName);
+                _soundsPlayer.Play(_soundName, _fireVolume);
                 cooldown = true;
                 cooldownCoroutine = StartCoroutine(FireCooldown(_fireRate));
                 _bulletSpawner.SpawnBullet(_firePoint.position);

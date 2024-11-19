@@ -8,11 +8,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int _health;
     [SerializeField] private int _scoreNumber;
     private Score _score;
-    [SerializeField] private BoomPlayer _boomPlayer;
-    private string _soundName = "взрыв";
+    ExplosionPlayersSpawner explosionPlayersPool;
     private void Start()
     {
-        _boomPlayer = FindAnyObjectByType<BoomPlayer>();
+        explosionPlayersPool = FindObjectOfType<ExplosionPlayersSpawner>();
         _score = FindAnyObjectByType<Score>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,7 +31,7 @@ public class Enemy : MonoBehaviour
     }
     private void Die()
     {
-        _boomPlayer.Play(_soundName);
+        explosionPlayersPool.TrySpawnExplosionPlayer(transform.position);
         _score.AddScore(_scoreNumber);
         gameObject.SetActive(false);
     }

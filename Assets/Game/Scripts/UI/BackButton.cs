@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoomPlayer : SoundsPlayer
+public class BackButton : MonoBehaviour
 {
-
+    
 }

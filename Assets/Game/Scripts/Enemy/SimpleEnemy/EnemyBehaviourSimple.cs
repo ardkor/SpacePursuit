@@ -11,6 +11,9 @@ public class EnemyBehaviourSimple : MonoBehaviour
 
     [SerializeField] private float _fireRate = 1f;
     [SerializeField] private Transform _firePoint;
+    [SerializeField] private SoundsPlayer _firePlayer;
+    private string _soundName = "выстрел";
+    private float _fireVolume = 0.5f;
 
     private Transform _playerTransform;
     private SimpleEnemyBulletSpawner _bulletSpawner;
@@ -19,6 +22,10 @@ public class EnemyBehaviourSimple : MonoBehaviour
     private bool cooldown = false;
     float targetAngleLimit = 30f;
 
+    private void OnEnable()
+    {
+        cooldown = false;
+    }
     void Start()
     {
         _bulletSpawner = FindObjectOfType<SimpleEnemyBulletSpawner>();
@@ -74,7 +81,8 @@ public class EnemyBehaviourSimple : MonoBehaviour
     {
         if (!cooldown)
         {
-            Debug.Log(angle);
+           
+            _firePlayer.Play(_soundName, _fireVolume);
             cooldown = true;
             cooldownCoroutine = StartCoroutine(FireCooldown(_fireRate));
             _bulletSpawner.SpawnBullet(_firePoint.position, angle, targetDir);

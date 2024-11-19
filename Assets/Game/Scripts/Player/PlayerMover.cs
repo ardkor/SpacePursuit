@@ -15,7 +15,7 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private float _moveEnergySpend;
     [SerializeField] private float _fadeSpeed;
     [SerializeField] private SpriteRenderer _engineSprite;
-    [SerializeField] private SoundsPlayer _soundsPlayer;
+    [SerializeField] private FadeSoundsPlayer _soundsPlayer;
     [SerializeField] private float _volume = 0.15f;
     private string _soundName = "двигатель";
     private PlayerEnergy _playerEnergy;
@@ -38,7 +38,7 @@ public class PlayerMover : MonoBehaviour
             if (_soundsPlayer.isPlaying())
             {
                // Debug.Log("fade");
-                _soundsPlayer.FadeSound();
+                _soundsPlayer.TryFadeSound();
             }
         }
         prevPosX = transform.position.x;
@@ -51,7 +51,7 @@ public class PlayerMover : MonoBehaviour
             if (!_soundsPlayer.isPlaying())
             {
                 
-                _soundsPlayer.IncreaseSound();
+                _soundsPlayer.TryIncreaseSound();
             }
             alpha += _fadeSpeed * Time.deltaTime * 2;
             alpha = Mathf.Clamp01(alpha);
