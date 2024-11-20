@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FadeSoundsPlayer : SoundsPlayer
@@ -26,7 +25,7 @@ public class FadeSoundsPlayer : SoundsPlayer
         }
     }
 
-    IEnumerator FadeSound()
+    private IEnumerator FadeSound()
     {
         float fadeTime = _rateTime;
 
@@ -41,7 +40,7 @@ public class FadeSoundsPlayer : SoundsPlayer
         yield break;
     }
 
-    IEnumerator IncreaseSound()
+    private IEnumerator IncreaseSound()
     {
         float increaseTime = 0;
 

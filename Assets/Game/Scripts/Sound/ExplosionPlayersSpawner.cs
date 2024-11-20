@@ -1,19 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ExplosionPlayersSpawner : ObjectPool
 {
     [SerializeField] private GameObject _explosionPlayersTemplate;
-     //private List<GameObject> _explosionPlayers;
-    //private List<SoundsPlayer> soundsPlayers;
+
     private float _pitch;
     private float _volume = 1f;
     private SoundsPlayer _currentPlayer;
     private string _soundName = "взрыв";
+
     private void Start()
     {
-        //_explosionPlayers = new List<GameObject>();
         Initialize(_explosionPlayersTemplate);
     }
     private void Update()

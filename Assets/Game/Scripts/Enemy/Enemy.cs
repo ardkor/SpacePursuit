@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -7,6 +5,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int _damage;
     [SerializeField] private int _health;
     [SerializeField] private int _scoreNumber;
+
     private Score _score;
     ExplosionPlayersSpawner explosionPlayersPool;
     private void Start()

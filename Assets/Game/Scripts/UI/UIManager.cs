@@ -9,11 +9,11 @@ public class UIManager : MonoBehaviour
 
     //public AudioMixer masterMixer;
     //public AudioClip _audioClip;
-    private void Start()
+    /*private void Start()
     {
        // Time.timeScale = 0f;
 
-        /*        int masterVolume = PlayerPrefs.GetInt("MasterVolume", 50);
+                int masterVolume = PlayerPrefs.GetInt("MasterVolume", 50);
                 int soundVolume = PlayerPrefs.GetInt("SoundVolume", 50);
                 int musicVolume = PlayerPrefs.GetInt("MusicVolume", 50);
 
@@ -21,8 +21,8 @@ public class UIManager : MonoBehaviour
 
                 masterMixer.SetFloat("MasterVolume", (float)masterVolume);
                 masterMixer.SetFloat("SoundVolume", (float)soundVolume);
-                masterMixer.SetFloat("MusicVolume", musicVolume);*/
-    }
+                masterMixer.SetFloat("MusicVolume", musicVolume);
+}*/
     public void OpenPanel(GameObject panel)
     {
         panel.SetActive(true);

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerEnergy))]
@@ -17,6 +15,7 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private SpriteRenderer _engineSprite;
     [SerializeField] private FadeSoundsPlayer _soundsPlayer;
     [SerializeField] private float _volume = 0.15f;
+
     private string _soundName = "двигатель";
     private PlayerEnergy _playerEnergy;
     private float alpha;
@@ -35,9 +34,8 @@ public class PlayerMover : MonoBehaviour
         _engineSprite.color = new Color(_engineSprite.color.r, _engineSprite.color.g, _engineSprite.color.b, alpha);
         if (prevPosX == transform.position.x)
         {
-            if (_soundsPlayer.isPlaying())
+            if (_soundsPlayer.IsPlaying())
             {
-               // Debug.Log("fade");
                 _soundsPlayer.TryFadeSound();
             }
         }
@@ -45,17 +43,16 @@ public class PlayerMover : MonoBehaviour
     }
     public void TryMove(float moveInput)
     {
-        //_engineSprite.color = new Color(_engineSprite.color.r, _engineSprite.color.g, _engineSprite.color.b, alpha);
-        if (_playerEnergy.trySpendEnergy(_moveEnergySpend * Time.deltaTime))
+        if (_playerEnergy.TrySpendEnergy(_moveEnergySpend * Time.deltaTime))
         {
-            if (!_soundsPlayer.isPlaying())
+            if (!_soundsPlayer.IsPlaying())
             {
                 
                 _soundsPlayer.TryIncreaseSound();
             }
             alpha += _fadeSpeed * Time.deltaTime * 2;
             alpha = Mathf.Clamp01(alpha);
-            Vector3 movement = Vector3.right * moveInput * _moveSpeed * Time.deltaTime;
+            Vector3 movement = _moveSpeed * moveInput * Time.deltaTime * Vector3.right;
 
             float newXPos = Mathf.Clamp(transform.position.x + movement.x, _minLeft, _maxRight);
             transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);

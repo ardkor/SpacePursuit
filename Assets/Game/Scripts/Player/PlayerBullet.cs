@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBullet : Bullet
@@ -7,7 +5,7 @@ public class PlayerBullet : Bullet
 
     private void Update()
     {
-        transform.Translate(Vector2.down * _speed * Time.deltaTime);
+        transform.Translate(_speed * Time.deltaTime * Vector2.down);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

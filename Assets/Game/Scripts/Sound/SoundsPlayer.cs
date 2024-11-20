@@ -1,21 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using ChrisTutorials.Persistent;
 
 public class SoundsPlayer : MonoBehaviour
 {
     [SerializeField] protected Sound[] _sounds;
-
     [SerializeField] protected bool _isDistantion = false;
-    protected float _maxDistance = 10f;
 
+    protected float _maxDistance = 10f;
     protected AudioClip _audioClip;
     protected AudioSource _audioSource;
-
     protected float _prevVolume;
-
-    
 
     [System.Serializable]
     protected class Sound
@@ -90,7 +84,7 @@ public class SoundsPlayer : MonoBehaviour
             _audioSource.maxDistance = _maxDistance;
         }
     }
-    public bool isPlaying()
+    public bool IsPlaying()
     {
         return _audioSource.isPlaying;
     }

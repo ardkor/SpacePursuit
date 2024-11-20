@@ -1,16 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+//using TMPro;
 //using UnityEngine.Audio;
 
 //using System.Collections;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using ChrisTutorials.Persistent;
 
 public class VolumeSlider : MonoBehaviour
 {
    // [SerializeField] private TMP_Text _volumeText;
-    [SerializeField] private Slider _slider; //переделать реквайр компонент геткомпонент?
+    [SerializeField] private Slider _slider; 
 
     //[SerializeField] bool _effectSlider;
 /*    [EnableIf("_effectSlider")]
@@ -18,10 +18,10 @@ public class VolumeSlider : MonoBehaviour
     [Dropdown("_mixersValues")]*/
     [SerializeField] private string _audioChannelName;
 
-    private List<string> _mixersValues { get { return new List<string>() { "MasterVolume", "MusicVolume", "SoundVolume" }; } }
+/*    private List<string> _mixersValues { get { return new List<string>() { "MasterVolume", "MusicVolume", "SoundVolume" }; } }
 
     private bool _buttonHold;
-    private AudioSource _audioSource;
+    private AudioSource _audioSource;*/
     private void Start()
     {
         //Debug.Log(PlayerPrefs.GetInt(_audioChannelName, 50) );
@@ -32,7 +32,7 @@ public class VolumeSlider : MonoBehaviour
 
     public void SliderTriggering(bool button) 
     {
-        _buttonHold = button;
+        //_buttonHold = button;
         SetSliderVolume();
         PlayerPrefs.SetInt(_audioChannelName, System.Convert.ToInt32(_slider.value * 100));
 

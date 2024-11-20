@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerEnergy : MonoBehaviour
 {
@@ -32,7 +30,7 @@ public class PlayerEnergy : MonoBehaviour
         energy = Mathf.Clamp(energy, 0f, maxEnergy);
         energySlider.value = (energy) / maxEnergy;
     }
-    public bool trySpendEnergy(float amount)
+    public bool TrySpendEnergy(float amount)
     {
         if (energy > amount)
         {
@@ -47,24 +45,4 @@ public class PlayerEnergy : MonoBehaviour
         }
         return false;
     }
-
-    /*    public void DamagePlayer(int amount)
-        {
-            if (energy > 0)
-            {
-                energy -= amount;
-                energySlider.value = ((float)energy) / maxEnergy;
-                if (energy <= 0)
-                {
-                    energy = 0;
-                    energySlider.value = ((float)energy) / maxEnergy;
-                    energySlider.gameObject.SetActive(false);
-                }
-                return;
-            }
-            playerHp -= amount;
-            hpSlider.value = ((float)playerHp) / maxPlayerHp;
-            if (playerHp <= 0)
-                GameOver();
-        }*/
 }

@@ -1,40 +1,37 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class EnemyBehaviourRocket : MonoBehaviour
 {
     [SerializeField] private float _enemySpeed = 1.5f;
+    [SerializeField] private EnemyMover _enemyMover;
+
     private float _leftTpPos = -14.5f;
     private float _rightTpPos = 14.5f;
 
     private float _leftBorder = -15f;
     private float _rightBorder = 15f;
-    [SerializeField] private EnemyMover _enemyMover;
-    //private bool randomMove = true;
+    private float upDownTimer;
+
     private bool randomShoot;
     private bool randomTr;
-    private float upDownTimer;
     private bool upDown = true;
     private Vector3 positionChanger;
-    void Start()
+    private void Start()
     {
         _enemyMover = GetComponent<EnemyMover>();
         StartCoroutine(RandomizeEnemy());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         _enemyMover.TryStop();
         upDownTimer += Time.deltaTime;
             if (upDown) { 
-                transform.Translate(Vector3.down * 0.7f * Time.deltaTime);
+                transform.Translate(0.7f * Time.deltaTime * Vector3.down);
             }
             else{
-                transform.Translate(Vector3.up * 0.7f * Time.deltaTime);
+                transform.Translate(0.7f * Time.deltaTime * Vector3.up);
             }
 
         if (upDownTimer >= 2)
@@ -43,17 +40,14 @@ public class EnemyBehaviourRocket : MonoBehaviour
             upDownTimer = 0;
         }
 
-        /*if (randomMove) 
-        {*/
         if (randomTr)
-            {
-                transform.Translate(Vector3.right * _enemySpeed * Time.deltaTime);
-            }
-            else
-            {
-                transform.Translate(Vector3.left * _enemySpeed * Time.deltaTime);
-            }
-        //}
+        {
+            transform.Translate(_enemySpeed * Time.deltaTime * Vector3.right);
+        }
+        else
+        {
+            transform.Translate(_enemySpeed * Time.deltaTime * Vector3.left);
+        }
 
         if(transform.position.x > _rightBorder)
         {
@@ -74,7 +68,7 @@ public class EnemyBehaviourRocket : MonoBehaviour
         }
     }
 
-    IEnumerator RandomizeEnemy()
+    private IEnumerator RandomizeEnemy()
     {
         while (true)
         {

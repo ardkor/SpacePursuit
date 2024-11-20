@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class Score : MonoBehaviour
 {
@@ -9,6 +7,7 @@ public class Score : MonoBehaviour
     [SerializeField] private TMP_Text _bestScoreText;
     [SerializeField] private TMP_Text _lastScoreText;
     [SerializeField] private Player _player;
+
     private int _score;
     private int _bestScore;
     private int _lastScore;

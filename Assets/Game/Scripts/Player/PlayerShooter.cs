@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerEnergy))]
@@ -11,10 +10,11 @@ public class PlayerShooter : MonoBehaviour
     [SerializeField] private Transform _firePoint;
     [SerializeField] private BulletSpawner _bulletSpawner;
     [SerializeField] private SoundsPlayer _soundsPlayer;
+
     private string _soundName = "выстрел";
-    private Coroutine cooldownCoroutine;
     private bool cooldown = false;
     private PlayerEnergy _playerEnergy;
+
     private void Start()
     {
         _playerEnergy = GetComponent<PlayerEnergy>();
@@ -24,11 +24,11 @@ public class PlayerShooter : MonoBehaviour
     {
         if (!cooldown)
         {
-            if (_playerEnergy.trySpendEnergy(_fireEnergySpend))
+            if (_playerEnergy.TrySpendEnergy(_fireEnergySpend))
             {
                 _soundsPlayer.Play(_soundName, _fireVolume);
                 cooldown = true;
-                cooldownCoroutine = StartCoroutine(FireCooldown(_fireRate));
+                StartCoroutine(FireCooldown(_fireRate));
                 _bulletSpawner.SpawnBullet(_firePoint.position);
             }
         }

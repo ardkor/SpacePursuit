@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuScreen : MonoBehaviour
 {
@@ -11,6 +9,7 @@ public class MenuScreen : MonoBehaviour
     [SerializeField] private Button _playButton;
     [SerializeField] private Button _exitGameButton;
     [SerializeField] private Button _pauseButton;
+
     private CanvasGroup _gameOverGroup;
     private void OnEnable()
     {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : ObjectPool
@@ -13,7 +11,6 @@ public class EnemySpawner : ObjectPool
     private float _soundDistance = 30f;
     private SoundsPlayer _arrivePlayer;
     private string _soundName = "прибытие";
-
     private float _elapsedTime = 0;
    
     private void Start()

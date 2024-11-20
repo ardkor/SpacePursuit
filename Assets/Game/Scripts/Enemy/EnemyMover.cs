@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMover : MonoBehaviour
@@ -11,7 +9,7 @@ public class EnemyMover : MonoBehaviour
 
     private void Update()
     {
-        Vector3 movement = Vector3.down * _speed * Time.deltaTime;
+        Vector3 movement = _speed * Time.deltaTime * Vector3.down;
 
         float newYPos = Mathf.Clamp(transform.position.y + movement.y, _minHeight, _maxHeight);
         transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
