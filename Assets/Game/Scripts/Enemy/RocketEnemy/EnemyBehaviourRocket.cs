@@ -11,12 +11,14 @@ public class EnemyBehaviourRocket : MonoBehaviour
 
     private float _leftBorder = -15f;
     private float _rightBorder = 15f;
-    private float upDownTimer;
+    private float _yDisplacementTimer;
 
-    private bool randomShoot;
-    private bool randomTr;
-    private bool upDown = true;
-    private Vector3 positionChanger;
+    private bool _randomShoot;
+    private bool _randomDirection;
+    private bool _upDown = true;
+
+    private Vector3 _positionChanger;
+
     private void Start()
     {
         _enemyMover = GetComponent<EnemyMover>();
@@ -26,21 +28,23 @@ public class EnemyBehaviourRocket : MonoBehaviour
     private void Update()
     {
         _enemyMover.TryStop();
-        upDownTimer += Time.deltaTime;
-            if (upDown) { 
-                transform.Translate(0.7f * Time.deltaTime * Vector3.down);
-            }
-            else{
-                transform.Translate(0.7f * Time.deltaTime * Vector3.up);
-            }
+        _yDisplacementTimer += Time.deltaTime;
 
-        if (upDownTimer >= 2)
-        {
-            if (upDown) { upDown = false; } else { upDown = true; }
-            upDownTimer = 0;
+        if (_upDown) { 
+            transform.Translate(0.7f * Time.deltaTime * Vector3.down);
+        }
+        else{
+            transform.Translate(0.7f * Time.deltaTime * Vector3.up);
         }
 
-        if (randomTr)
+        if (_yDisplacementTimer >= 2)
+        {
+            if (_upDown) { _upDown = false; } 
+            else { _upDown = true; }
+            _yDisplacementTimer = 0;
+        }
+
+        if (_randomDirection)
         {
             transform.Translate(_enemySpeed * Time.deltaTime * Vector3.right);
         }
@@ -49,20 +53,20 @@ public class EnemyBehaviourRocket : MonoBehaviour
             transform.Translate(_enemySpeed * Time.deltaTime * Vector3.left);
         }
 
-        if(transform.position.x > _rightBorder)
+        if (transform.position.x > _rightBorder)
         {
-            positionChanger = transform.position;
-            positionChanger.x = _leftTpPos;
-            transform.position = positionChanger;
+            _positionChanger = transform.position;
+            _positionChanger.x = _leftTpPos;
+            transform.position = _positionChanger;
         }
         else if (transform.position.x < _leftBorder)
         {
-            positionChanger = transform.position;
-            positionChanger.x = _rightTpPos;
-            transform.position = positionChanger;
+            _positionChanger = transform.position;
+            _positionChanger.x = _rightTpPos;
+            transform.position = _positionChanger;
         }
 
-        if(randomShoot)
+        if(_randomShoot)
         {
             //shooting
         }
@@ -72,9 +76,10 @@ public class EnemyBehaviourRocket : MonoBehaviour
     {
         while (true)
         {
+            _enemySpeed = Random.Range(1f, 2f);
             //randomMove = UnityEngine.Random.Range(0,2) == 1;
-            randomShoot = UnityEngine.Random.Range(0, 2) == 1;
-            randomTr = UnityEngine.Random.Range(0, 2) == 1;
+            _randomShoot = Random.Range(0, 2) == 1;
+            _randomDirection = Random.Range(0, 2) == 1;
 
 
             yield return new WaitForSeconds(1);

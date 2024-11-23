@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 7732734886693539934}
   - component: {fileID: 1483808964674147705}
   m_Layer: 7
-  m_Name: LaserEnemy
+  m_Name: LinearEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,10 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cef2abf281c05743828848f3739dbeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemySpeed: 1
-  fireRate: 5
-  stopRate: 4
-  _fireVolume: 0.16
   _firePoint: {fileID: 408386328834363409}
   _firePlayer: {fileID: 2498524748846709752}
 --- !u!50 &7732734886693539934

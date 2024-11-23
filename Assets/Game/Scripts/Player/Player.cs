@@ -6,15 +6,15 @@ public class Player : MonoBehaviour
 
     public event UnityAction<int> HealthChanged;
     public event UnityAction Died;
-
+    private float heartHP = 5f;
     private void Start()
     {
-        HealthChanged?.Invoke(_health);
+        HealthChanged?.Invoke((int)(_health / heartHP));
     }
     public void ApplyDamage(int damage)
     {
         _health -= damage;
-        HealthChanged?.Invoke(_health);
+        HealthChanged?.Invoke((int)(_health / heartHP));
         if (_health <= 0)
             Die();
     }

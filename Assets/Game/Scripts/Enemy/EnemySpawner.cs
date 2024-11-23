@@ -4,7 +4,7 @@ public class EnemySpawner : ObjectPool
 {
     [SerializeField] private GameObject[] _enemyTemplates;
     [SerializeField] private Transform[] _spawnPoints;
-    [SerializeField] private float _secondsBetweenSpawn;
+    private float _secondsBetweenSpawn;
 
     private float _arriveVolume = 1f;
     private float _arrivePitch = 1f;
@@ -16,6 +16,7 @@ public class EnemySpawner : ObjectPool
     private void Start()
     {
         Initialize(_enemyTemplates);
+        _secondsBetweenSpawn = Random.Range(2f, 4f);
     }
     private void Update()
     {

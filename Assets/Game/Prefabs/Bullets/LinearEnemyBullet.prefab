@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3612284518649830024}
   - component: {fileID: 2327859100024404868}
   m_Layer: 6
-  m_Name: LaserEnemyBullet
+  m_Name: LinearEnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,4 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 1
-  _speed: 9
+  _speed: 10

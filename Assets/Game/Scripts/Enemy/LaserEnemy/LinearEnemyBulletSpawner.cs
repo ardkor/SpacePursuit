@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserEnemyBulletSpawner : ObjectPool
+public class LinearEnemyBulletSpawner : ObjectPool
 {
     [SerializeField] private GameObject[] _bulletTemplates;
 
