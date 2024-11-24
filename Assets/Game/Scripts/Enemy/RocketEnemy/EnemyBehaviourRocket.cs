@@ -24,11 +24,19 @@ public class EnemyBehaviourRocket : MonoBehaviour
     private float _rightBorder = 15f;
     private float _yDisplacementTimer;
 
+    private float _cooldownTime = 2f;
+
     private bool _randomShoot;
     private bool _randomDirection;
     private bool _upDown = true;
+    private bool _cooldown = false;
 
     private Vector3 _positionChanger;
+
+    private void OnEnable()
+    {
+        _cooldown = false;
+    }
 
     private void Start()
     {
@@ -80,7 +88,11 @@ public class EnemyBehaviourRocket : MonoBehaviour
 
         if(_randomShoot)
         {
-            _bulletSpawner.SpawnBullet(transform.position);
+            if (!_cooldown)
+            {
+                _bulletSpawner.SpawnBullet(_firePoint.position);
+                StartCoroutine(FireCooldown());
+            }
         }
     }
 
@@ -92,9 +104,15 @@ public class EnemyBehaviourRocket : MonoBehaviour
             //randomMove = UnityEngine.Random.Range(0,2) == 1;
             _randomShoot = Random.Range(0, 2) == 1;
             _randomDirection = Random.Range(0, 2) == 1;
-
+            _cooldownTime = Random.Range(3f, 5f);
 
             yield return new WaitForSeconds(2);
         }
+    }
+    private IEnumerator FireCooldown()
+    {
+        _cooldown = true;
+        yield return new WaitForSeconds(_cooldownTime);
+        _cooldown = false;
     }
 }

@@ -80,7 +80,6 @@ public class EnemyBehaviourSimple : MonoBehaviour
         if (!_cooldown)
         {
             _firePlayer.Play(_soundName, _fireVolume);
-            _cooldown = true;
             StartCoroutine(FireCooldown(_fireRate));
             _bulletSpawner.SpawnBullet(_firePoint.position, angle);
         }
@@ -88,6 +87,7 @@ public class EnemyBehaviourSimple : MonoBehaviour
 
     private IEnumerator FireCooldown(float fireRate)
     {
+        _cooldown = true;
         yield return new WaitForSeconds(fireRate);
         _cooldown = false;
     }
