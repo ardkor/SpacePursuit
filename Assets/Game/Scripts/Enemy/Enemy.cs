@@ -7,10 +7,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int _scoreNumber;
 
     private Score _score;
-    ExplosionPlayersSpawner explosionPlayersPool;
+    private ExplosionPlayersSpawner _explosionPlayersSpawner;
+    private ExplosionSpritesSpawner _explosionSpritesSpawner;
     private void Start()
     {
-        explosionPlayersPool = FindObjectOfType<ExplosionPlayersSpawner>();
+        _explosionSpritesSpawner = FindObjectOfType<ExplosionSpritesSpawner>();
+        _explosionPlayersSpawner = FindObjectOfType<ExplosionPlayersSpawner>();
         _score = FindAnyObjectByType<Score>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,7 +32,8 @@ public class Enemy : MonoBehaviour
     }
     private void Die()
     {
-        explosionPlayersPool.TrySpawnExplosionPlayer(transform.position);
+        _explosionPlayersSpawner.TrySpawnExplosionPlayer(transform.position);
+        _explosionSpritesSpawner.TrySpawnExplosionSprite(transform.position);
         _score.AddScore(_scoreNumber);
         gameObject.SetActive(false);
     }

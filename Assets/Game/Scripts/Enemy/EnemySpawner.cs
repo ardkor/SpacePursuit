@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemySpawner : ObjectPool
 {
@@ -12,11 +13,12 @@ public class EnemySpawner : ObjectPool
     private SoundsPlayer _arrivePlayer;
     private string _soundName = "прибытие";
     private float _elapsedTime = 0;
-   
+    private float _randomisationCooldown = 3.0f;
+
     private void Start()
     {
         Initialize(_enemyTemplates);
-        _secondsBetweenSpawn = Random.Range(2f, 4f);
+        StartCoroutine(RandomizeSpawner());
     }
     private void Update()
     {
@@ -40,5 +42,14 @@ public class EnemySpawner : ObjectPool
         _arrivePlayer.Play(_soundName, _arriveVolume, _arrivePitch, _soundDistance);
         enemy.SetActive(true);
         enemy.transform.position = spawnPoint.position;
+    }
+    private IEnumerator RandomizeSpawner()
+    {
+        while (true)
+        {
+            _secondsBetweenSpawn = Random.Range(2f, 4f);
+            _randomisationCooldown = _secondsBetweenSpawn;
+            yield return new WaitForSeconds(_randomisationCooldown);
+        }
     }
 }

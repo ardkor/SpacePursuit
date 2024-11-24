@@ -6,6 +6,17 @@ public class EnemyBehaviourRocket : MonoBehaviour
     [SerializeField] private float _enemySpeed = 1.5f;
     [SerializeField] private EnemyMover _enemyMover;
 
+    [SerializeField] private Transform _firePoint;
+    [SerializeField] private SoundsPlayer _firePlayer;
+
+    private float _randomisationCooldown = 3.0f;
+    private float _fireRate = 1f;
+
+    private string _soundName = "выстрел";
+    private float _fireVolume = 0.5f;
+
+    private RocketEnemyBulletSpawner _bulletSpawner;
+
     private float _leftTpPos = -14.5f;
     private float _rightTpPos = 14.5f;
 
@@ -21,6 +32,7 @@ public class EnemyBehaviourRocket : MonoBehaviour
 
     private void Start()
     {
+        _bulletSpawner = FindObjectOfType<RocketEnemyBulletSpawner>();
         _enemyMover = GetComponent<EnemyMover>();
         StartCoroutine(RandomizeEnemy());
     }
@@ -68,7 +80,7 @@ public class EnemyBehaviourRocket : MonoBehaviour
 
         if(_randomShoot)
         {
-            //shooting
+            _bulletSpawner.SpawnBullet(transform.position);
         }
     }
 
@@ -82,7 +94,7 @@ public class EnemyBehaviourRocket : MonoBehaviour
             _randomDirection = Random.Range(0, 2) == 1;
 
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
         }
     }
 }

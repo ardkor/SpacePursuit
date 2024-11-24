@@ -21,5 +21,4 @@ public class EnemyMover : MonoBehaviour
             enabled = false;
         }
     }
-
 }

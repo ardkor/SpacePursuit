@@ -1175,6 +1175,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 369488638}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &460950516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 460950517}
+  m_Layer: 0
+  m_Name: RocketExplosionPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &460950517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460950516}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1980184180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &462569633
 GameObject:
   m_ObjectHideFlags: 0
@@ -2462,7 +2493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 768356792}
   m_Layer: 0
-  m_Name: ExplosionPlayersPool
+  m_Name: ExplosionPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4861,6 +4892,56 @@ Transform:
   - {fileID: 2107702135}
   m_Father: {fileID: 1854361787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1584590950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1584590951}
+  - component: {fileID: 1584590952}
+  m_Layer: 0
+  m_Name: Rocket Enemy Bullets Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1584590951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584590950}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2062165064}
+  m_Father: {fileID: 1854361787}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1584590952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584590950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940efc14458434447acca5aa5d5c0f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _container: {fileID: 2062165063}
+  _capacity: 10
+  _bulletTemplates:
+  - {fileID: 6605808900620629765, guid: 0e9a0feec2e97bc49af0b43fcff2a8d3, type: 3}
+  _playerTransform: {fileID: 1928021274}
 --- !u!1 &1591272273
 GameObject:
   m_ObjectHideFlags: 0
@@ -6195,7 +6276,9 @@ Transform:
   - {fileID: 807528797}
   - {fileID: 503078605}
   - {fileID: 1558006982}
+  - {fileID: 1584590951}
   - {fileID: 369488638}
+  - {fileID: 1980184180}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1854492443
@@ -6671,8 +6754,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1980184180}
   - component: {fileID: 1980184179}
+  - component: {fileID: 1980184181}
+  - component: {fileID: 1980184182}
   m_Layer: 0
-  m_Name: ExplosionPlayersSpawner
+  m_Name: ExplosionSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6701,14 +6786,45 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1980184178}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 768356792}
-  m_Father: {fileID: 0}
+  - {fileID: 460950517}
+  m_Father: {fileID: 1854361787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1980184181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980184178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1001a7e3537f8414ab4b8f083ee09376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _container: {fileID: 768356791}
+  _capacity: 10
+  _explosionSpriteTemplate: {fileID: 1739973653493477491, guid: 43ffc2fc044f1dd4f8d00ad3fec21ba2, type: 3}
+--- !u!114 &1980184182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980184178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cfcc4633871b904fa7a674580457c27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _container: {fileID: 460950516}
+  _capacity: 10
+  _explosionSpriteTemplate: {fileID: 6787164666111716801, guid: 0d329cacab4b40b44bb0c4a4f799da9a, type: 3}
 --- !u!1 &1980945089
 GameObject:
   m_ObjectHideFlags: 0
@@ -6952,6 +7068,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039772830}
   m_CullTransparentMesh: 1
+--- !u!1 &2062165063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2062165064}
+  m_Layer: 0
+  m_Name: RocketEnemyBulletsPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2062165064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062165063}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1584590951}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2062436961
 GameObject:
   m_ObjectHideFlags: 0
@@ -7643,4 +7790,3 @@ SceneRoots:
   - {fileID: 794092262}
   - {fileID: 999330716}
   - {fileID: 573289831}
-  - {fileID: 1980184180}

@@ -9,8 +9,8 @@ public class EnemyBehaviourSimple : MonoBehaviour
 
     private float _enemySpeed = 2.0f;
     private float _evasionBorder = 2.0f;
-    private float _randomisationCooldown = 3.0f;
     private float _fireRate = 1f;
+    private float _randomizationCooldown = 3.0f;
 
     private string _soundName = "выстрел";
     private float _fireVolume = 0.5f;
@@ -39,10 +39,10 @@ public class EnemyBehaviourSimple : MonoBehaviour
     {
         while (true)
         {
-            _enemySpeed = Random.Range(1.5f, 2.5f);
-            _evasionBorder = Random.Range(0f, 2.5f);
-            _fireRate = Random.Range(0.5f, 2f);
-            yield return new WaitForSeconds(_randomisationCooldown);
+            _enemySpeed = Random.Range(0.7f, 1.4f);
+            _evasionBorder = Random.Range(3f, 4.5f);
+            _fireRate = Random.Range(1f, 3f);
+            yield return new WaitForSeconds(_randomizationCooldown);
         }
     }
     private void Update()

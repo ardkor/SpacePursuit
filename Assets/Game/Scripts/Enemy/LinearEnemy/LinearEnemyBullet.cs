@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserEnemyBullet : Bullet
+public class LinearEnemyBullet : Bullet
 {
     private void Update()
     {
