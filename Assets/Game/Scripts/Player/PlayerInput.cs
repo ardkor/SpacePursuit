@@ -9,7 +9,8 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private PlayerMover _mover;
     [SerializeField] private PlayerShooter _shooter;
-
+    [SerializeField] private FixedJoystick _fixedJoystick;
+    private float moveInput;
     private void Start()
     {
         _mover = GetComponent<PlayerMover>();
@@ -18,8 +19,18 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-
-        if (Input.GetAxisRaw("Horizontal") != 0)
+        //mobile input
+        moveInput = _fixedJoystick.Horizontal;
+        if (moveInput != 0)
+        {
+            _mover.TryMove(moveInput);
+        }
+        /*if (Input.GetKey(KeyCode.Mouse0))
+        {
+            _shooter.TryShoot();
+        }*/
+        // pc input
+        /*if (Input.GetAxisRaw("Horizontal") != 0)
         {
             float moveInput = Input.GetAxisRaw("Horizontal");
             _mover.TryMove(moveInput);
@@ -27,6 +38,10 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0))
         {
             _shooter.TryShoot();
-        }
+        }*/
+    }
+    public void ShootButton()
+    {
+        _shooter.TryShoot();
     }
 }

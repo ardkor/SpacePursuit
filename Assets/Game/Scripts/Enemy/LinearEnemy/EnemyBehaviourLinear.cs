@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 public class EnemyBehaviourLinear : MonoBehaviour
 {
     [SerializeField] private Transform _firePoint;
@@ -19,6 +19,8 @@ public class EnemyBehaviourLinear : MonoBehaviour
 
     private float _fireRate = 0.07f;
     private float _fireRateTimer = 0f;
+    private float _evasionBorder = 0.02f;
+    private float _randomizationCooldown = 3.0f;
 
     private LinearEnemyBulletSpawner _linearEnemyBulletSpawner;
     private string _soundName = "очередь";
@@ -28,20 +30,52 @@ public class EnemyBehaviourLinear : MonoBehaviour
     {
         _linearEnemyBulletSpawner = FindObjectOfType<LinearEnemyBulletSpawner>();
         _playerTransform = FindObjectOfType<Player>().transform;
-        _targetSpeed = Random.Range(1.5f, 3f);
+        //_targetSpeed = Random.Range(1.5f, 3f);
+        StartCoroutine(RandomizeEnemy());
     }
-
+    
+    private IEnumerator RandomizeEnemy()
+    {
+        while (true)
+        {
+            _enemySpeed = Random.Range(1.5f, 3f);
+            //_evasionBorder = Random.Range(3f, 4.5f);
+            _fireRate = Random.Range(0.07f, 0.1f);
+            yield return new WaitForSeconds(_randomizationCooldown);
+        }
+    }
     private void Update()
     {
         _stopTimer += Time.deltaTime;
-        if (transform.position.x < _playerTransform.position.x)
+        float offset = transform.position.x - _playerTransform.position.x;
+        if ((offset > 0) && (offset < Time.deltaTime + 0.01f))
         {
-            transform.Translate(_enemySpeed * Time.deltaTime * Vector3.right);
+            _stopTimer += Time.deltaTime;
         }
-        else if (transform.position.x > _playerTransform.position.x)
+        else if ((offset < 0) && (-offset < Time.deltaTime + 0.01f))
+        {
+            _stopTimer += Time.deltaTime;
+        }
+        else if (offset > 0)
         {
             transform.Translate(_enemySpeed * Time.deltaTime * Vector3.left);
         }
+        else if (offset < 0)
+        {
+            transform.Translate(_enemySpeed * Time.deltaTime * Vector3.right);
+        }
+        /*if (transform.position.x - _playerTransform.position.x < 0.01)
+        {
+            transform.Translate(_enemySpeed * Time.deltaTime * Vector3.right);
+        }
+        else if (transform.position.x - _playerTransform.position.x > 0.01)
+        {
+            transform.Translate(_enemySpeed * Time.deltaTime * Vector3.left);
+        }
+        else if (transform.position.x - _playerTransform.position.x < 0.01f)
+        {
+            _stopTimer = _stopRate;
+        }*/
 
         if (_stopTimer >= _stopRate)
         {
@@ -62,7 +96,7 @@ public class EnemyBehaviourLinear : MonoBehaviour
                 _wasSound = false;
                 _fireTimer = 0.0f;
                 _stopTimer = 0.0f;
-                _enemySpeed = _targetSpeed;
+               // _enemySpeed = _targetSpeed;
             }
         }
     }

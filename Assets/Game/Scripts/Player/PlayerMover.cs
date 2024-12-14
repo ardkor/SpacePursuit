@@ -16,10 +16,12 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private FadeSoundsPlayer _soundsPlayer;
     [SerializeField] private float _volume = 0.15f;
 
+
     private string _soundName = "двигатель";
     private PlayerEnergy _playerEnergy;
     private float alpha;
     private float prevPosX = 0f;
+    
     private void Start()
     {
         _playerEnergy = GetComponent<PlayerEnergy>();
@@ -43,11 +45,10 @@ public class PlayerMover : MonoBehaviour
     }
     public void TryMove(float moveInput)
     {
-        if (_playerEnergy.TrySpendEnergy(_moveEnergySpend * Time.deltaTime))
+        if (_playerEnergy.TrySpendEnergy(Mathf.Abs(moveInput) * _moveEnergySpend * Time.deltaTime))
         {
             if (!_soundsPlayer.IsPlaying())
-            {
-                
+            {       
                 _soundsPlayer.TryIncreaseSound();
             }
             alpha += _fadeSpeed * Time.deltaTime * 2;
